@@ -9,7 +9,7 @@ input_vcf = args[1]
 library(VariantAnnotation)
 library(data.table)
 
-#input_vcf <- "./gnomad_datasets/gnomad.exomes.r2.1.sites.chr22.head.vcf.bgz"
+#input_vcf <- "../gnomad_vcf/gnomad.exomes.r2.1.sites.chr22.head.vcf.bgz"
 
 in_split <- unlist(strsplit(input_vcf, "/"))
 
@@ -56,11 +56,12 @@ fwrite(snps_dt[, 1:5], n_varlist, sep = "\t", col.names = FALSE)
 pop_freqs <- merge(snps_dt, pops_gad, by = "idx")
 pop_freqs[, idx := NULL]
 pop_freqs[, paramRangeID := NULL]
-rename(pop_freqs, 
-      c("seqnames", "start", "end", "REF", "ALT"),
-      c("Chr", "Start", "End", "Ref", "Alt")
-      )
+
+setnames(pop_freqs, 
+        c("seqnames", "start", "end", "REF", "ALT"),
+        c("Chr", "Start", "End", "Ref", "Alt")
+        )
 
 system("mkdir -p ./gnomad_freqs")
 n_popinfo <- paste0("./gnomad_freqs/", prefix, ".freq.tsv")
-fwrite(snps_dt[, 1:5], n_popinfo, sep = "\t", col.names = TRUE)
+fwrite(pop_freqs, n_popinfo, sep = "\t", col.names = TRUE)
