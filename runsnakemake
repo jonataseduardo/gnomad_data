@@ -1,0 +1,1 @@
+snakemake --jobs 22 --cluster 'qsub -q bigmem -j oe -l walltime=120:00:00 -o annot.out' 
