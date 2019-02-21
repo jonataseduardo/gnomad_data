@@ -2,7 +2,7 @@
 
 AN_PATH=$HOME/tools/annovar
 
-for annot in ensGene dbnsfp35c avsnp150 revel 
+for annot in ensGene dbnsfp35c avsnp150 revel eigen cadd dann 
   do
   $AN_PATH/annotate_variation.pl \
     -buildver hg19 \
