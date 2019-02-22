@@ -10,8 +10,8 @@ $AN_PATH/table_annovar.pl \
   -buildver hg19 \
   -out $TABLE_OUT \
   -remove \
-  -protocol refGene,cytoBand,avsnp150,dbnsfp35c,revel \
-  -operation g,r,f,f,f   \
+  -protocol refGene,cytoBand,avsnp150,dbnsfp35c,revel,cadd,dann,eigen \
+  -operation g,r,f,f,f,f,f,f \
   -nastring "" \
   -csvout \
   -polish 
